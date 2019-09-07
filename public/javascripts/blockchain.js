@@ -155,7 +155,6 @@ var nomesAleatorios =
 }
 
 function changeNameTo(newName, block, chain, tx) {
-  console.log('newName', newName);
   $('#block'+block+'chain'+chain+'tx'+tx+'to').val(newName);
 }
 
@@ -169,7 +168,6 @@ function getArrayTransaction(block, tx) {
   retorno[0] = tx;
   retorno[1] = from;
   retorno[2] =   to;
-  console.log
 
   return retorno;
 
@@ -188,11 +186,33 @@ function validarSaldo(block) {
   list.push(item);
   var item = getArrayTransaction(block, 4);
   list.push(item);
-console.log(list.length);
+  var value = 0;
+  var credito = 0;
+  var debito = 0; 
+  var item  = [];
+
 
   for (var i = 0; i <= list.length; i++) {
+    
+    if(block != "1") {
+      item = list[i]; 
+      
+    }
+    if(item != undefined) {
+      valor = parseInt( item[0]);
+      debito = item[1];
+      credito = item[2];
 
-    console.log(i, list[i]);
+
+      var debitAccounValue = parseInt($('#'+debito+'saldo').val());
+      var creditAccountValue = parseInt($('#'+credito+'saldo').val());
+      
+      debitAccounValue = debitAccounValue - valor;
+      creditAccountValue = creditAccountValue + valor;
+      
+      $('#'+debito+'saldo').val(debitAccounValue);
+      $('#'+credito+'saldo').val(creditAccountValue);
+    }
   }
 
   
