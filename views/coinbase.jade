@@ -62,7 +62,7 @@ block content
           l.start();
           setTimeout(function() {
               mine(block, chain, true);
-              var nomesAleatorios = [['Carla',], 'Itamar', 'Solange', 'Eduardo', 'Satoshi Nakamoto'];
+              var nomesAleatorios = ['Carla', 'Itamar', 'Solange', 'Eduardo', 'Satoshi_Nakamoto'];
               var txMiner = 0.005
               var vltxMiner =  0
               var txValue = $('#block'+block+'chain'+chain+'tx0value').val();
@@ -72,7 +72,16 @@ block content
               if(txValue !== "") {
                 vltxMiner = txMiner*txValue
               }
-              $('#block'+block+'chain'+chain+'txMiner').val(vltxMiner + ' txMiner');
+
+              if(isNaN(vltxMiner) !== true ) {
+                var saldo = $('#'+rand+'saldo').val();
+                var calc = parseInt(saldo)+parseInt(vltxMiner)+100;
+                $('#'+rand+'saldo').val(calc);
+
+                $('#block'+block+'chain'+chain+'txMiner').val(vltxMiner + ' txMiner');
+                } else if(block == "1") {
+                $('#'+rand+'saldo').val(100);
+              }
 
               $('#block'+block+'chain'+chain+'change0to').val($('#block'+block+'chain'+chain+'tx0from').val()); 
 
