@@ -124,10 +124,8 @@ function changeName(newName, block, chain, tx) {
   $('#block'+block+'chain'+chain+'tx'+tx+'from').val(newName);
 }
 
-
-
-function contractNameto(block, chain, tx) {
-  changeWalletto(block, chain, tx);
+function contractNameTo(block, chain, tx) {
+  changeWalletTO(block, chain, tx);
 }
 
 function changeWalletTO(block, chain, tx) {
@@ -138,7 +136,7 @@ var nomesAleatorios =
             ['Eduardo','39981B0880B1956BFCCBBA9260BB848CCD28ED2651E11553C53489847A252BA4'],
             ['Satoshi Nakamoto'], 'A0DC65FFCA799873CBEA0AC274015B9526505DAAAED385155425F7337704883E'];
   
-  var wallet = $('#block'+block+'chain'+chain+'tx'+tx+'from').val();
+  var wallet = $('#block'+block+'chain'+chain+'tx'+tx+'to').val();
   var newName = "";
 
   if(wallet === 'AD8D83FFD82B5A8ED429E8592B5CB3E6E83A033770868A1A00C6FD1E7FAE242C') {
@@ -154,15 +152,55 @@ var nomesAleatorios =
   } else {
     changeNameTo('', block, chain, tx);
   }
-
-  
 }
 
 function changeNameTo(newName, block, chain, tx) {
+  console.log('newName', newName);
   $('#block'+block+'chain'+chain+'tx'+tx+'to').val(newName);
 }
 
+function getArrayTransaction(block, tx) {
+  var retorno = [];
+  var x = tx
+  var tx = $('#block'+block+'chain1tx'+tx+'value').val();
+  var from = $('#block'+block+'chain1tx'+x+'from').val();
+
+  var to  = $('#block'+block+'chain1tx'+x+'to').val();
+  retorno[0] = tx;
+  retorno[1] = from;
+  retorno[2] =   to;
+  console.log
+
+  return retorno;
+
+}
+
+function validarSaldo(block) {
+
+  var list = [];
+  var item = getArrayTransaction(block, 0);
+  list.push(item);
+  var item = getArrayTransaction(block, 1);
+  list.push(item);
+  var item = getArrayTransaction(block, 2);
+  list.push(item);
+  var item = getArrayTransaction(block, 3);
+  list.push(item);
+  var item = getArrayTransaction(block, 4);
+  list.push(item);
+console.log(list.length);
+
+  for (var i = 0; i <= list.length; i++) {
+
+    console.log(i, list[i]);
+  }
+
+  
+  return false;
+}
+
 function mine(block, chain, isChain) {
+  var validarTransacoes = validarSaldo(block);
   for (var x = 0; x <= maximumNonce; x++) {
     
     $('#block'+block+'chain'+chain+'nonce').val(x);

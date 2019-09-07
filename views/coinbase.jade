@@ -48,6 +48,8 @@ block content
       return s;
     }
 
+    
+
     function setup(block, chain) {
       
       updateHash(block, chain);
@@ -88,7 +90,7 @@ block content
               if($('#block'+block+'chain'+chain+'change0value').val() === "" )
               {
                 if($('#block'+block+'chain'+chain+'tx0value').val() !== "" && $('#block'+block+'chain'+chain+'tx0value').val() !== "0")  {
-                alert(rand+ ', ficou com o troco');
+                  alert(rand+ ', ficou com o troco');
                 }
               }
 
