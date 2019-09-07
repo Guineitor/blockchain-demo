@@ -199,11 +199,14 @@ function validarSaldo(block) {
       item = list[i]; 
       
     }
-    if(item != undefined) {
+    if(item !== undefined) {
       valor = parseInt( item[0]);
       debito = item[1];
       credito = item[2];
-      taxaFixa = taxaFixa + 1;
+      if(credito !== "") {
+        taxaFixa = taxaFixa + 1;
+      }
+      
       var debitAccounValue = parseInt($('#'+debito+'saldo').val());
 
       var creditAccountValue = parseInt($('#'+credito+'saldo').val());
