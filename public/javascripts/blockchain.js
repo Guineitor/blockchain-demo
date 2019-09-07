@@ -186,7 +186,7 @@ function validarSaldo(block) {
   list.push(item);
   var item = getArrayTransaction(block, 4);
   list.push(item);
-  var taxaFixa = 1;
+  var taxaFixa = 0;
   var value = 0;
   var credito = 0;
   var debito = 0; 
@@ -203,12 +203,12 @@ function validarSaldo(block) {
       valor = parseInt( item[0]);
       debito = item[1];
       credito = item[2];
-
+      taxaFixa = taxaFixa + 1;
       var debitAccounValue = parseInt($('#'+debito+'saldo').val());
 
       var creditAccountValue = parseInt($('#'+credito+'saldo').val());
       console.log(debitAccounValue, valor);
-      debitAccounValue = debitAccounValue - valor - taxaFixa;
+      debitAccounValue = debitAccounValue - valor - 1;
       creditAccountValue = creditAccountValue + valor;
       
       if(debitAccounValue < 0 ) {
@@ -217,6 +217,7 @@ function validarSaldo(block) {
       }
       $('#'+debito+'saldo').val(debitAccounValue);
       $('#'+credito+'saldo').val(creditAccountValue);
+      $('#fee').val(taxaFixa);
     }
   }
 

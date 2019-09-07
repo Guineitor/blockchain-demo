@@ -79,8 +79,8 @@ block content
                 var saldo = $('#'+rand+'saldo').val();
                 var calc = parseInt(saldo)+101;
                 $('#'+rand+'saldo').val(calc);
-
-                $('#block'+block+'chain'+chain+'txMiner').val(1);
+                var txm = $('#fee').val();
+                $('#block'+block+'chain'+chain+'txMiner').val(txm);
                 } else if(block == "1") {
                 $('#'+rand+'saldo').val(100);
               }
